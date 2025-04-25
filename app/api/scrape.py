@@ -48,6 +48,7 @@ def scrape_images(tags):
     # Start the browser
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=chrome_options)
+    img_urls = []
     for tag in tags: 
         # print("TAG IS --> " + tag)
         # Open Shein search page
@@ -66,7 +67,6 @@ def scrape_images(tags):
         images = soup.find_all('img')
 
         # Append image URLs to a list
-        img_urls = []
         for img in images:
             img_url = img.get('src')
             # print("IMG IS" + img_url)
@@ -82,7 +82,7 @@ def scrape_images(tags):
             # Return the list of image URLs
             # print(img_urls)
         # Close browser
-        driver.quit()
+    driver.quit()
     
     return img_urls
 
